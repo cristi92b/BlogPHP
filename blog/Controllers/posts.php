@@ -32,7 +32,7 @@ class PostsController{
         ));
     }
     
-    static function update($id){
+    static function update($id,$title,$content){
         View::display('../Views/posts_index.twig', array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
             'title' => 'blog'
