@@ -1,6 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 include 'Controllers/*.php';
+include 'Model/*.php';
 $app = new \Slim\Slim();
 
 /*
@@ -12,6 +13,8 @@ $controller=new $Class($app);
 if(method_exists($controller,$function)) $controller->{$function}();
 })->via('GET', 'POST');
 */
+
+
 // posts index
 $app->get('/', function () {
     echo "5";
@@ -20,9 +23,36 @@ $app->get('/', function () {
 });
 
 $app->get('/posts', function () {
-    echo "7";
     PostsController::index();
-    echo "8";
 });
+
+// posts show
+$app->get('/posts/:id', function ($id) {
+    PostsController::index();
+});
+
+
+// posts new
+$app->get('/posts/new', function () {
+    PostsController::index();
+});
+
+// posts create
+$app->post('/posts', function () {
+    PostsController::index();
+});
+
+// posts update
+$app->put('/posts/:id', function ($id) {
+    PostsController::index();
+});
+
+// posts delete
+$app->delete('/posts/:id', function ($id) {
+    PostsController::index();
+});
+
+
+
 $app->run();
 ?>
