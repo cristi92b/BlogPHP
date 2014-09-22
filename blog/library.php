@@ -2,35 +2,12 @@
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
-function db_connect()
-{
-    $connection=mysqli_connect("localhost","root","admin","PHPDB");
-    // Check connection
-    if (mysqli_connect_errno()) {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    }
-    return $connection;
-}
-
-function db_disconnect($connection)
-{
-	mysqli_close($connection);
-}
-
-
-function fetch_latest7($connection)
-{
-    $result = mysqli_query($connection,"SELECT * FROM post LIMIT 7 Order by createdTime");
-}
-
-
-
 class Database{
 
-//variable to hold db connection
-private $connection;
-//note we used static variable,beacuse an instance cannot be used to refer this
-public static $instance;
+	//variable to hold db connection
+	private $connection;
+	//note we used static variable,beacuse an instance cannot be used to refer this
+	public static $instance;
 
 	//note constructor is private so that classcannot be instantiated
 	private function __construct(){
@@ -59,16 +36,27 @@ public static $instance;
 	}
 
 
-	public function query($sql){
-		  //code to run the query
+	public function fetch_latest7_post(){
+		  $result = mysqli_query($connection,"SELECT * FROM post LIMIT 7 Order by createdTime");
+		  $posts=array();
+		  while($row = mysqli_fetch_array($result))
+		  {
+		  	$posts[]=new Post($row['id'],$row['title'],$row['createdTime'],$row['updateTime'],$row['content']);
+		  }
+		  return $posts;
+	}
+	
+	public function fetch_all_comments($post_id){
+		  $result = mysqli_query($connection,"SELECT * FROM comment WHERE post_id={$post_id} Order by createdTime");
+		  $posts=array();
+		  while($row = mysqli_fetch_array($result))
+		  {
+		  	$posts[]=new Post($row['id'],$row['name'],$row['createdTime'],$row['updateTime'],$row['post_id'],$row['content']);
+		  }
+		  return $posts;
 	}
 
 }
-
-
-Access the method getInstance using
-$db = Singleton::getInstance();
-$db->query();
 
 
 
@@ -79,9 +67,13 @@ class Post {
     private $updateTime;
     private $content;
     
-    public function __construct()
+    public function __construct($id,$title,$createdTime,$updateTime,$content)
     {
-    
+    		$this->id = $id;
+    		$this->title = $title;
+    		$this->createdTime = $createdTime;
+    		$this->updateTime = $updateTime;
+    		$this->content = $content;
     }
    
     function getID() {
@@ -134,9 +126,14 @@ class Comment {
     private $post_id;
     private $content;
     
-    public function __construct()
+    public function __construct($id,$name,$createdTime,$updateTime,$post_id,$content)
     {
-    
+    		$this->id = $id;
+    		$this->name = $name;
+    		$this->createdTime = $createdTime;
+    		$this->updateTime = $updateTime;
+    		$this->post_id = $post_id;
+    		$this->content = $content;
     }
    
     function getID() {
