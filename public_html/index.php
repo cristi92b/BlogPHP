@@ -1,5 +1,11 @@
-<?php require '../blog/routes.php'; ?>
+<?php require '../blog/routes.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
 <html>
 	<head>
 		<script type="text/javascript" src="js/jquery-2.1.1.js"></script>
@@ -10,7 +16,8 @@
 		<h1>Blog</h1>
 		<hr>
 		<div id="posts">
-			<?php fetch_latest7(); ?>
+
 		</div>
 	</body>
 </html>
+-->
