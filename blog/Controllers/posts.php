@@ -19,7 +19,8 @@ class PostsController{
             'title' => 'blog'
         ));
         */
-        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('./Views/posts_index.twig',array(
+        //TwigEnvironmentLoader::getInstance()->getEnvironment()->loadTemplate('posts_index.twig');
+        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
             'title' => 'blog'
         ));
