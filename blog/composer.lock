@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "503194f74c43be1bf596f212ed6d5474",
+    "hash": "a617f2f761371e3fd42db24de9bb17f9",
     "packages": [
         {
             "name": "slim/extras",
@@ -104,16 +104,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "dev-master",
+            "version": "v1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "084ca201a737de82323f7613665e7229789aa434"
+                "reference": "8ce37115802e257a984a82d38254884085060024"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/084ca201a737de82323f7613665e7229789aa434",
-                "reference": "084ca201a737de82323f7613665e7229789aa434",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8ce37115802e257a984a82d38254884085060024",
+                "reference": "8ce37115802e257a984a82d38254884085060024",
                 "shasum": ""
             },
             "require": {
@@ -157,7 +157,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-09-02 14:08:17"
+            "time": "2014-07-05 12:19:05"
         }
     ],
     "packages-dev": [
@@ -168,8 +168,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "slim/extras": 20,
-        "twig/twig": 20
+        "slim/extras": 20
     },
     "prefer-stable": false,
     "platform": [

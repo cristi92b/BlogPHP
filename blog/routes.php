@@ -1,10 +1,25 @@
 <?php
 require 'vendor/autoload.php';
+require_once 'twig.php';
 include 'Controllers/posts.php';
 include 'Model/database.php';
 include 'Model/post.php';
 include 'Model/comment.php';
+
+
+
 $app = new \Slim\Slim();
+
+//$twigView = new \Slim\Extras\Views\Twig();
+
+/*
+$app->config(array(
+'debug' => true,
+'templates.path' => './Views/',
+'view' => $twig
+));
+*/
+
 
 /*
 $app->map('/dynamic/:class/:function', function ($class,$function) use ($app) {

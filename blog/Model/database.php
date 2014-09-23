@@ -9,13 +9,13 @@ class Database{
 
 	//note constructor is private so that classcannot be instantiated
 	private function __construct(){
-	//code connect to database  
+		//code connect to database  
 		$connection=mysqli_connect("localhost","root","admin","PHPDB");
-    // Check connection
-    if (mysqli_connect_errno()) {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    }
-    return $connection;
+		// Check connection
+		if (mysqli_connect_errno()) {
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		return $connection;
 	}
 	
 	function get_connection()

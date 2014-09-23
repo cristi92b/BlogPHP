@@ -1,4 +1,4 @@
-<?php require '../blog/routes.php';
+<?php
 
 // ----------------------------------------------------------------------------------------------------
 // - Display Errors
@@ -58,6 +58,8 @@ function ErrorHandler($type, $message, $file, $line)
 };
 
 $old_error_handler = set_error_handler("ErrorHandler");
+
+require '../blog/routes.php';
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">

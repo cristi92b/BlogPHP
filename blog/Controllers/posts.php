@@ -1,8 +1,25 @@
 <?php
+
+if(!class_exists('TwigEnvironmentLoader'))
+{
+    require '../twig.php';
+}
+
+
 class PostsController{
     static function index(){
         echo "calling index method";
-        View::display('../../public_html/Views/posts_index.twig', array(
+        /*
+        echo TwigEnvironmentLoader::getInstance()->getEnvironment()->render('index.html', array(
+            'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
+            'title' => 'blog'
+        ));
+        TwigEnvironmentLoader::getInstance()->getEnvironment()->loadTemplate('posts_index.twig')->display(array(
+            'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
+            'title' => 'blog'
+        ));
+        */
+        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('./Views/posts_index.twig',array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
             'title' => 'blog'
         ));
@@ -10,7 +27,7 @@ class PostsController{
     
     static function show($id){
         echo "calling show method with id=" + $id;
-        View::display('../../public_html/Views/posts_index.twig', array(
+        View::display('../Views/posts_index.twig', array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
             'title' => 'blog'
         ));
@@ -18,7 +35,7 @@ class PostsController{
     
     static function _new(){
         echo "calling new method ";
-        View::display('../../public_html/Views/posts_index.twig', array(
+        View::display('../Views/posts_index.twig', array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
             'title' => 'blog'
         ));
@@ -26,21 +43,21 @@ class PostsController{
     
     static function create($title,$content){
         echo "calling create method";
-        View::display('../../public_html/Views/posts_index.twig', array(
+        View::display('../Views/posts_index.twig', array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
             'title' => 'blog'
         ));
     }
     
     static function update($id,$title,$content){
-        View::display('../../public_html/Views/posts_index.twig', array(
+        View::display('../Views/posts_index.twig', array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
             'title' => 'blog'
         ));
     }
     
     static function delete($id){
-        View::display('../../public_html/Views/posts_index.twig', array(
+        View::display('../Views/posts_index.twig', array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
             'title' => 'blog'
         ));

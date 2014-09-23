@@ -2,6 +2,6 @@
     "require": {
         "slim/slim": "2.*",
         "slim/extras": "dev-master",
-        "twig/twig": "1.16.*@dev"
+        "twig/twig": "1.*"
     }
 }
