@@ -19,9 +19,7 @@ if(method_exists($controller,$function)) $controller->{$function}();
 
 // posts index
 $app->get('/', function () {
-    echo "5";
     PostsController::index();
-    echo "6";
 });
 
 $app->get('/posts', function () {
