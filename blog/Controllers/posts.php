@@ -20,36 +20,24 @@ if(!class_exists('Comment'))
 
 class PostsController{
     static function index(){
-        echo "calling index method";
         TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
-            'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
-            'title' => 'blog',
             'posts' => Post::fetch_all_posts(Database::getInstance())
         ));
     }
     
     static function show($id){
-        echo "calling show method with id=" + $id;
-        View::display('../Views/posts_index.twig', array(
-            'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
-            'title' => 'blog'
-        ));
+        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_show.html.twig');
     }
     
     static function _new(){
-        echo "calling new method ";
-        View::display('../Views/posts_index.twig', array(
-            'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
-            'title' => 'blog'
-        ));
+        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_new.html.twig');
     }
     
-    static function create($title,$content){
-        echo "calling create method";
-        View::display('../Views/posts_index.twig', array(
-            'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
-            'title' => 'blog'
+    static function create($app){
+        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
+            'posts' => Post::fetch_all_posts(Database::getInstance())
         ));
+        ladybug_dump($app->request()->post());
     }
     
     static function update($id,$title,$content){

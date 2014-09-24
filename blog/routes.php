@@ -20,7 +20,6 @@ $app->config(array(
 ));
 */
 
-
 /*
 $app->map('/dynamic/:class/:function', function ($class,$function) use ($app) {
 if(!isset($_SESSION['myid'])) die("pleaselogin");
@@ -33,12 +32,25 @@ if(method_exists($controller,$function)) $controller->{$function}();
 
 
 // posts index
+
 $app->get('/', function () {
     PostsController::index();
 });
-
 $app->get('/posts', function () {
     PostsController::index();
+});
+
+// posts create
+$app->post('/', function () use ($app){
+    PostsController::create($app);
+});
+$app->post('/posts', function () use ($app) {
+    PostsController::create($app);
+});
+
+// posts new
+$app->get('/posts/new', function () {
+    PostsController::_new();
 });
 
 // posts show
@@ -46,16 +58,6 @@ $app->get('/posts/:id', function ($id) {
     PostsController::show($id);
 });
 
-
-// posts new
-$app->get('/posts/new', function () {
-    PostsController::_new();
-});
-
-// posts create
-$app->post('/posts', function ($title,$content) {
-    PostsController::create($title,$content);
-});
 
 // posts update
 $app->put('/posts/:id', function ($id,$title,$content) {
