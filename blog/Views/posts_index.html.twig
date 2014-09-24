@@ -1,13 +1,22 @@
 <html>
 <head>
     <titile>My Blog</title>
+    <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
         <h1>Blog</h1>
         <hr>
-        <h2>{{title}}</h2>
         <div id="posts">
-                {{table}}
+            {% for post in posts %}
+            <div class="post">
+                <h2>{{post.title}}</h2>
+                <h4>Created: {{post.createdTime}}</h4>
+                <h4>Last Updated: {{post.updateTime}}</h4>
+                <hr>
+                {{post.content}}
+            </div>
+            {% endfor %}
         </div>
 </body>
 </html>

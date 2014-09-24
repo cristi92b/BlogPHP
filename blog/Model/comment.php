@@ -66,16 +66,16 @@ class Comment {
         $this->content = $content;
     }
     
-    public function fetch_all_comments($db_instance){
+    public static function fetch_all_comments($db_instance,$post_id){
 		  $connection = $db_instance->get_connection();
 		  $result = mysqli_query($connection,"SELECT * FROM comment WHERE post_id={$post_id} Order by createdTime");
-		  $posts=array();
+		  $comments=array();
 		  while($row = mysqli_fetch_array($result))
 		  {
-		  	$posts[]=new Post($row['id'],$row['name'],$row['createdTime'],$row['updateTime'],$row['post_id'],$row['content']);
+		  	$comments[]=new Comment($row['id'],$row['name'],$row['createdTime'],$row['updateTime'],$row['post_id'],$row['content']);
 		  }
-		  return $posts;
-	}
+		  return $comments;
+    }
 } 
 
 ?>

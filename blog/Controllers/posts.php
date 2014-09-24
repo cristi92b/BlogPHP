@@ -4,25 +4,27 @@ if(!class_exists('TwigEnvironmentLoader'))
 {
     require '../twig.php';
 }
+if(!class_exists('Database'))
+{
+    require '../Model/database.php';
+}
+if(!class_exists('Post'))
+{
+    require '../Model/post.php';
+}
+if(!class_exists('Comment'))
+{
+    require '../Model/comment.php';
+}
 
 
 class PostsController{
     static function index(){
         echo "calling index method";
-        /*
-        echo TwigEnvironmentLoader::getInstance()->getEnvironment()->render('index.html', array(
-            'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
-            'title' => 'blog'
-        ));
-        TwigEnvironmentLoader::getInstance()->getEnvironment()->loadTemplate('posts_index.twig')->display(array(
-            'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
-            'title' => 'blog'
-        ));
-        */
-        //TwigEnvironmentLoader::getInstance()->getEnvironment()->loadTemplate('posts_index.twig');
         TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
-            'title' => 'blog'
+            'title' => 'blog',
+            'posts' => Post::fetch_all_posts(Database::getInstance())
         ));
     }
     
@@ -63,17 +65,5 @@ class PostsController{
             'title' => 'blog'
         ));
     }
-    
-    
-    
-/*
- *    static function index(){
-        echo "calling index method";
-        View::display('../Views/posts_index.twig', array(
-            'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
-            'title' => 'blog'
-        ));
-    }
- **/
 }
 ?>

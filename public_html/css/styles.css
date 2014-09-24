@@ -2,6 +2,19 @@ body{
     background-color: white; 
 }
 
+div#posts{
+    background-color: red;
+}
+
+div.post{
+    border: groove;
+    border-width: 5px;
+    position: absolute;
+    width: 400px;
+    right: 0px;
+    background-color: blue;
+}
+
 .top-bar {
   position: fixed;
   top: 0;

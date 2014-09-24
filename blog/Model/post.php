@@ -55,6 +55,17 @@ class Post {
     function setContent($content) {
         $this->content = $content;
     }
+    
+    public static function fetch_all_posts($db_instance){
+		  $connection = $db_instance->get_connection();
+		  $result = mysqli_query($connection,"SELECT * FROM post Order by createdTime");
+		  $posts=array();
+		  while($row = mysqli_fetch_assoc($result))
+		  {
+		  	$posts[] = $row; //new Post($row['id'],$row['title'],$row['createdTime'],$row['updateTime'],$row['content']);
+		  }
+		  return $posts;
+    }
 }
 
 ?>

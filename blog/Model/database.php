@@ -10,12 +10,12 @@ class Database{
 	//note constructor is private so that classcannot be instantiated
 	private function __construct(){
 		//code connect to database  
-		$connection=mysqli_connect("localhost","root","admin","PHPDB");
+		$this->connection=mysqli_connect("localhost","root","admin","PHPDB");
 		// Check connection
 		if (mysqli_connect_errno()) {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
-		return $connection;
+		//return $connection;
 	}
 	
 	function get_connection()
@@ -25,7 +25,7 @@ class Database{
 	
 	function db_disconnect()
 	{
-		mysqli_close($connection);
+		mysqli_close($this->connection);
 	}     
 
 	//to prevent loop hole in PHP so that the class cannot be cloned
