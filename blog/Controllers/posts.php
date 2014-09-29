@@ -34,10 +34,12 @@ class PostsController{
     }
     
     static function create($app){
+        Post::insert_record(Database::getInstance(),$app->request()->post('title'),$app->request()->post('content'));
         TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
             'posts' => Post::fetch_all_posts(Database::getInstance())
         ));
-        ladybug_dump($app->request()->post());
+        //ladybug_dump($app->request()->post('title'));
+        //ladybug_dump($app->request()->post('content'));
     }
     
     static function update($id,$title,$content){

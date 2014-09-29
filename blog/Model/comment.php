@@ -76,6 +76,15 @@ class Comment {
 		  }
 		  return $comments;
     }
+    
+    public static function insert_record($db_instance,$name,$content){
+		  $connection = $db_instance->get_connection();
+		  $name = "\"" + mysqli_real_escape_string($connection,$name) + "\"";
+		  $content = "\"" + mysqli_real_escape_string($connection,$content) + "\"";
+		  $query_str = "INSERT INTO comment(name,createdTime,post_id,content) values($name,CURRENT_TIMESTAMP(),1,$content)";
+		  $result = mysqli_query($connection,$query_str);
+		  return $result;
+    }
 } 
 
 ?>

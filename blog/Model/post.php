@@ -66,6 +66,21 @@ class Post {
 		  }
 		  return $posts;
     }
+    
+    public static function insert_record($db_instance,$title,$content){
+		  $connection = $db_instance->get_connection();
+		  $title = '\"' + mysqli_real_escape_string($connection,$title) + '\"';
+		  $content = '\"' + mysqli_real_escape_string($connection,$content) + '\"';
+		  ladybug_dump($title);
+		  ladybug_dump($content);
+		  $query_str = "INSERT INTO post(title,createdTime,content) values($title,CURRENT_TIMESTAMP(),$content)";
+		  $result = mysqli_query($connection,$query_str);
+		  if(!$result)
+		  {
+		    printf("Error: %s\n", mysqli_error($connection));
+		  }
+		  return $result;
+    }
 }
 
 ?>
