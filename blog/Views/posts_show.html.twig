@@ -7,12 +7,22 @@
 <body>
         <h1>Blog</h1>
         <hr>
-	<form action="put">
-	    Title: <input type="text" placeholder="{{post.title}}"> <br>
+	<form action="/posts" method="put">
+	    Title: <input type="text" placeholder="{{post.title}}" id="title_text"> <br>
 	    Content: <br>
-	    <textarea name="content" placeholder="{{post.content}}"></textarea>
+	    <textarea name="content" placeholder="{{post.content}}" id="content_text"></textarea>
 	    <br>
-	    <button type="submit">Submit</button>
+	    <button type="submit" id="submit_button">Submit</button>
 	</form>
+	<script type="text/javascript">
+	    $("#submit_button").click( function() {
+		$.ajax({
+		    type: "PUT",
+		    url: "/posts",
+		    contentType: "application/json",
+		    data: {"id": "{{post.id}}", "title" : $("#title_text").text() , "content" : $("#content_text").text()}
+		});		      
+	    });
+	</script>
 </body>
 </html>

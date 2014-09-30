@@ -60,8 +60,8 @@ $app->get('/posts/:id', function ($id) {
 
 
 // posts update
-$app->put('/posts/:id', function ($id,$title,$content) {
-    PostsController::update($id);
+$app->put('/posts', function ($app) {
+    PostsController::update($app);
 });
 
 // posts delete

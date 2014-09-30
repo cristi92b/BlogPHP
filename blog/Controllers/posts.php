@@ -36,7 +36,6 @@ class PostsController{
     }
     
     static function create($app){
-        Post::insert_record(Database::getInstance(),$app->request()->post('title'),$app->request()->post('content'));
         TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
             'posts' => Post::fetch_all_posts(Database::getInstance())
         ));
@@ -44,7 +43,12 @@ class PostsController{
         //ladybug_dump($app->request()->post('content'));
     }
     
-    static function update($id,$title,$content){
+    static function update($app){
+        //Post::insert_record(Database::getInstance(),$app->request()->post('title'),$app->request()->post('content'));
+        ladybug_dump($app->request());
+        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
+            'posts' => Post::fetch_all_posts(Database::getInstance())
+        ));
         View::display('../Views/posts_index.twig', array(
             'table' => '<table><tr><td>1</td><td>2</td></tr></table>',
             'title' => 'blog'
