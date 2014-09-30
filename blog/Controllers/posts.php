@@ -26,7 +26,9 @@ class PostsController{
     }
     
     static function show($id){
-        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_show.html.twig');
+        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_show.html.twig',array(
+            'post' => Post::fetch_post_by_id(Database::getInstance(),$id)
+        ));
     }
     
     static function _new(){

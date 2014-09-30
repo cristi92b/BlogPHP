@@ -67,6 +67,13 @@ class Post {
 		  return $posts;
     }
     
+    public static function fetch_post_by_id($db_instance,$id){
+		  $connection = $db_instance->get_connection();
+		  $result = mysqli_query($connection,"SELECT * FROM post WHERE id=$id");
+		  $post = mysqli_fetch_assoc($result);
+		  return $post;
+    }
+    
     public static function insert_record($db_instance,$title,$content){
 		  $connection = $db_instance->get_connection();
 		  $title = '\'' . $title . '\''; //mysqli_real_escape_string($connection,$title)

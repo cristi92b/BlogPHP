@@ -7,7 +7,12 @@
 <body>
         <h1>Blog</h1>
         <hr>
-	Show view
-</form> 
+	<form action="put">
+	    Title: <input type="text" placeholder="{{post.title}}"> <br>
+	    Content: <br>
+	    <textarea name="content" placeholder="{{post.content}}"></textarea>
+	    <br>
+	    <button type="submit">Submit</button>
+	</form>
 </body>
 </html>
