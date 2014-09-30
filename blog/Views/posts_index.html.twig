@@ -1,6 +1,6 @@
 <html>
 <head>
-    <titile>My Blog</title>
+    <title>My Blog</title>
     <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
@@ -15,9 +15,22 @@
                 <h4>Last Updated: {{post.updateTime}}</h4>
                 <hr>
                 {{post.content}}
+                <hr>
+                <button type="button" id="button_{{post.id}}">Delete</button>
             </div>
             {% endfor %}
         </div>
         <a href="/posts/new">New Post</a>
+        <script type="text/javascript">
+            {% for key,post in posts %}
+                $("button#button_{{post.id}}").click(function() {
+                    $.post( "/posts/{{post.id}}/delete");
+                    $(document).ajaxComplete(function() {
+                        //location.reload();
+                        window.location.href = '/posts';
+                    });
+                });
+            {% endfor %}
+        </script>
 </body>
 </html>

@@ -60,12 +60,12 @@ $app->get('/posts/:id', function ($id) {
 
 
 // posts update
-$app->put('/posts', function ($app) {
+$app->post('/posts/:id', function() use ($app) {
     PostsController::update($app);
 });
 
 // posts delete
-$app->delete('/posts/:id', function ($id) {
+$app->post('/posts/:id/delete', function($id){
     PostsController::delete($id);
 });
 

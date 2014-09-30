@@ -74,11 +74,35 @@ class Post {
 		  return $post;
     }
     
+    public static function update_record($db_instance,$id,$title,$content){
+		  $connection = $db_instance->get_connection();
+		  $title = '\'' . $title . '\''; //mysqli_real_escape_string($connection,$title)
+		  $content = '\'' . $content . '\'';
+		  $query_str = "UPDATE post SET  title=$title , content=$content WHERE id=$id";
+		  $result = mysqli_query($connection,$query_str);
+		  if(!$result)
+		  {
+		    printf("Error: %s\n", mysqli_error($connection));
+		  }
+		  return $result;
+    }
+    
     public static function insert_record($db_instance,$title,$content){
 		  $connection = $db_instance->get_connection();
 		  $title = '\'' . $title . '\''; //mysqli_real_escape_string($connection,$title)
 		  $content = '\'' . $content . '\'';
 		  $query_str = "INSERT INTO post(title,createdTime,content) values($title,CURRENT_TIMESTAMP(),$content)";
+		  $result = mysqli_query($connection,$query_str);
+		  if(!$result)
+		  {
+		    printf("Error: %s\n", mysqli_error($connection));
+		  }
+		  return $result;
+    }
+    
+    public static function delete_record($db_instance,$id){
+		  $connection = $db_instance->get_connection();
+		  $query_str = "DELETE FROM post WHERE id=$id";
 		  $result = mysqli_query($connection,$query_str);
 		  if(!$result)
 		  {
