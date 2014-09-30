@@ -8,9 +8,9 @@
         <h1>Blog</h1>
         <hr>
         <div id="posts">
-            {% for post in posts %}
+            {% for key,post in posts %}
             <div class="post">
-                <h2>{{post.title}}</h2>
+                <h2><a href="/posts/{{post.id}}">{{post.title}}</a></h2>
                 <h4>Created: {{post.createdTime}}</h4>
                 <h4>Last Updated: {{post.updateTime}}</h4>
                 <hr>
