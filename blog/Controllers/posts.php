@@ -29,13 +29,15 @@ class PostsController{
     }
     
     static function show($id){
-        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_show.html.twig',array(
-            'post' => Post::fetch_post_by_id(Database::getInstance(),$id)
-        ));
+        $post = Post::fetch_post_by_id(Database::getInstance(),$id);
+        echo self::render('posts_show.html.twig',array('posts' => $post));
+        //TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_show.html.twig',array(
+        //    'post' => Post::fetch_post_by_id(Database::getInstance(),$id)
+        //));
     }
     
     static function _new(){
-        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_new.html.twig');
+        echo self::render('posts_new.html.twig',array());
     }
     
     static function create($app){
@@ -44,14 +46,21 @@ class PostsController{
     }
     
     static function update($app){
-        Post::update_record(Database::getInstance(),$app->request()->post('id'),$app->request()->post('title'),$app->request()->post('content'));
-        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_update.html.twig',array(
-            'post' => Post::fetch_post_by_id(Database::getInstance(),$app->request()->post('id'))
-        ));
+        //validation required
+        $flag = Post::update_record(Database::getInstance(),$app->request()->post('id'),$app->request()->post('title'),$app->request()->post('content'));
+        ladybug_dump($flag);
+        $post = Post::fetch_post_by_id(Database::getInstance(),$app->request()->post('id'));
+        echo self::render('posts_update.html.twig',array(
+                'post' => $post
+            ));
+        //TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_update.html.twig',array(
+        //    'post' => Post::fetch_post_by_id(Database::getInstance(),$app->request()->post('id'))
+        //));
     }
     
     static function delete($id){
         Post::delete_record(Database::getInstance(),$id);
+        $app->response->redirect("/posts");
     }
     
     static function render($viewFile, $viewData){
