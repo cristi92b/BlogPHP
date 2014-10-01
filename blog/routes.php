@@ -44,7 +44,7 @@ $app->get('/posts', function () {
 $app->post('/', function () use ($app){
     PostsController::create($app);
 });
-$app->post('/posts', function () use ($app) {
+$app->post('/posts/create', function () use ($app) {
     PostsController::create($app);
 });
 

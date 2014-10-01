@@ -20,9 +20,12 @@ if(!class_exists('Comment'))
 
 class PostsController{
     static function index(){
-        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
-            'posts' => Post::fetch_all_posts(Database::getInstance())
-        ));
+        
+        //TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
+        //    'posts' => Post::fetch_all_posts(Database::getInstance())
+        //));
+        $posts = Post::fetch_all_posts(Database::getInstance());
+        echo self::render('posts_index.html.twig',array('posts' => $posts));
     }
     
     static function show($id){
@@ -37,9 +40,7 @@ class PostsController{
     
     static function create($app){
         Post::insert_record(Database::getInstance(),$app->request()->post('title'),$app->request()->post('content'));
-        TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
-            'posts' => Post::fetch_all_posts(Database::getInstance())
-        ));
+        $app->response->redirect("/posts");
     }
     
     static function update($app){
@@ -51,6 +52,16 @@ class PostsController{
     
     static function delete($id){
         Post::delete_record(Database::getInstance(),$id);
+    }
+    
+    static function render($viewFile, $viewData){
+        $twig = TwigEnvironmentLoader::getInstance()->getEnvironment();
+        $renderedView = $twig->render($viewFile, $viewData);
+        $renderedTemplate = $twig->render("./templates/default.html.twig",
+            array(
+                 'mainContent' => $renderedView 
+        ));
+        return $renderedTemplate;
     }
 }
 ?>
