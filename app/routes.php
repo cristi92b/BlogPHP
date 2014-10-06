@@ -9,6 +9,12 @@ require_once 'controllers/PostsController.php';
 
 $app = new \Slim\Slim();
 
+//for debbuging purposes
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+/*
 $app->add(new \Slim\Middleware\SessionCookie(array(
     'expires' => '20 minutes',
     'path' => '/',
@@ -20,8 +26,7 @@ $app->add(new \Slim\Middleware\SessionCookie(array(
     'cipher' => MCRYPT_RIJNDAEL_256,
     'cipher_mode' => MCRYPT_MODE_CBC
 )));
-
-
+*/
 // posts index
 
 $app->get('/', function () use ($app){

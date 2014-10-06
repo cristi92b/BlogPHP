@@ -6,8 +6,7 @@ require_once __DIR__ . '/../models/Post.php';
 require_once __DIR__ . '/../models/Comment.php';
 
 
-
-class PostsController{
+class LoginController{
     static function index(){
         
         //TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
