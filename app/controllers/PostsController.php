@@ -9,10 +9,6 @@ require_once __DIR__ . '/../models/Comment.php';
 
 class PostsController{
     static function index(){
-        
-        //TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_index.html.twig',array(
-        //    'posts' => Post::fetch_all_posts(Database::getInstance())
-        //));
         if (session_status() == PHP_SESSION_ACTIVE) {
             $posts = Post::fetch_all_posts(Database::getInstance());
             echo self::render('posts_index.html.twig',array('posts' => $posts));
