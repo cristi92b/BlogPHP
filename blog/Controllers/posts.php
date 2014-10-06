@@ -30,7 +30,7 @@ class PostsController{
     
     static function show($id){
         $post = Post::fetch_post_by_id(Database::getInstance(),$id);
-        echo self::render('posts_show.html.twig',array('posts' => $post));
+        echo self::render('posts_show.html.twig',array('post' => $post));
         //TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_show.html.twig',array(
         //    'post' => Post::fetch_post_by_id(Database::getInstance(),$id)
         //));
@@ -48,11 +48,12 @@ class PostsController{
     static function update($app){
         //validation required
         $flag = Post::update_record(Database::getInstance(),$app->request()->post('id'),$app->request()->post('title'),$app->request()->post('content'));
-        ladybug_dump($flag);
-        $post = Post::fetch_post_by_id(Database::getInstance(),$app->request()->post('id'));
-        echo self::render('posts_update.html.twig',array(
-                'post' => $post
-            ));
+        //ladybug_dump($flag);
+        $app->response->redirect("/posts");
+        //$post = Post::fetch_post_by_id(Database::getInstance(),$app->request()->post('id'));
+        //echo self::render('posts_update.html.twig',array(
+        //        'post' => $post
+        //    ));
         //TwigEnvironmentLoader::getInstance()->getEnvironment()->display('posts_update.html.twig',array(
         //    'post' => Post::fetch_post_by_id(Database::getInstance(),$app->request()->post('id'))
         //));

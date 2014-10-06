@@ -33,8 +33,8 @@ if(method_exists($controller,$function)) $controller->{$function}();
 
 // posts index
 
-$app->get('/', function () {
-    PostsController::index();
+$app->get('/', function () use ($app){
+    $app->response->redirect("/posts");
 });
 $app->get('/posts', function () {
     PostsController::index();

@@ -1,31 +1,20 @@
-<html>
-<head>
-    <title>My Blog</title>
-    <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
-<body>
-        <h1>Blog</h1>
-        <hr>
-	<form method="post">
-	    <input type="hidden" name="id" value="{{post.id}}">
-	    Title: <input type="text" name="title" placeholder="{{post.title}}" id="title_text"> <br>
-	    Content: <br>
-	    <textarea name="content" placeholder="{{post.content}}" id="content_text"></textarea>
-	    <br>
-	    <button type="submit" id="submit_button">Submit</button>
-	</form>
-	
-	
-	<!--
-	<script>
-	    $("#submit_button").click( function() {
-		$.post( "/posts/{{post.id}}", { id: {{post.id}}, title: $("#title_text").text() , content : $("#content_text").text() })
-		    .done(function( data ) {
-		    alert( "Data Loaded: " + data );
-		});      
-	    });
-	</script>
-	-->
-</body>
-</html>
+<form method="post">
+    <input type="hidden" name="id" value="{{post.id}}">
+    Title: <input type="text" name="title" placeholder="{{post.title}}" id="title_text"> <br>
+    Content: <br>
+    <textarea name="content" placeholder="{{post.content}}" id="content_text"></textarea>
+    <br>
+    <button type="submit" id="submit_button">Submit</button>
+</form>
+
+
+<!--
+<script>
+    $("#submit_button").click( function() {
+	$.post( "/posts/{{post.id}}", { id: {{post.id}}, title: $("#title_text").text() , content : $("#content_text").text() })
+	    .done(function( data ) {
+	    alert( "Data Loaded: " + data );
+	});      
+    });
+</script>
+-->
