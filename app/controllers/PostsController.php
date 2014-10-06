@@ -1,21 +1,10 @@
 <?php
 
-if(!class_exists('TwigEnvironmentLoader'))
-{
-    require '../TwigEnvironmentLoader.php';
-}
-if(!class_exists('Database'))
-{
-    require '../models/Database.php';
-}
-if(!class_exists('Post'))
-{
-    require '../models/Post.php';
-}
-if(!class_exists('Comment'))
-{
-    require '../models/Comment.php';
-}
+require_once __DIR__ . '/../TwigEnvironmentLoader.php';
+require_once __DIR__ . '/../models/Database.php';
+require_once __DIR__ . '/../models/Post.php';
+require_once __DIR__ . '/../models/Comment.php';
+
 
 
 class PostsController{
