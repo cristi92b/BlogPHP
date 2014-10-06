@@ -2,15 +2,15 @@
 
 if(!class_exists('TwigEnvironmentLoader'))
 {
-    require '../twig.php';
+    require '../TwigEnvironmentLoader.php';
 }
 if(!class_exists('Database'))
 {
-    require '../Model/database.php';
+    require '../models/Database.php';
 }
 if(!class_exists('Post'))
 {
-    require '../Model/post.php';
+    require '../models/Post.php';
 }
 if(!class_exists('Comment'))
 {

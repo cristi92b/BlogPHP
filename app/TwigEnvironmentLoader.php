@@ -6,7 +6,7 @@ class TwigEnvironmentLoader {
     private $twig;
     private function __construct()
     {
-        $this->loader = new Twig_Loader_Filesystem(array('/var/www/blog/Views'));
+        $this->loader = new Twig_Loader_Filesystem(array('/var/www/app/views'));
         //$this->loader->exists("posts_index.html.twig");
         $this->twig = new Twig_Environment($this->loader,array('debug' => true));
         $this->twig->addExtension(new Twig_Extension_StringLoader());

@@ -1,10 +1,10 @@
 <?php
 require 'vendor/autoload.php';
-require_once 'twig.php';
-include 'Model/database.php';
-include 'Model/post.php';
-include 'Model/comment.php';
-include 'Controllers/posts.php';
+require_once 'TwigEnvironmentLoader.php';
+require_once 'models/Database.php';
+require_once 'models/Post.php';
+require_once 'models/Comment.php';
+require_once 'controllers/PostsController.php';
 
 
 
