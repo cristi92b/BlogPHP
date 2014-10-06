@@ -6,9 +6,20 @@ require_once 'models/Post.php';
 require_once 'models/Comment.php';
 require_once 'controllers/PostsController.php';
 
+$app = new \Slim\Slim(array(
+	'cookies.encrypt' => true,
+	'cookies.secret_key' => '1234'
+	//'sessions.driver' => 'mysql'
+));
 
+$manager = new \Slim\Middleware\SessionManager($app);
+//$manager->setFilesystem(new \Illuminate\Filesystem\Filesystem());
+// or sessions.driver == 'database'
+// ... setup Eloquent ...
+$manager->setDbConnection(Database::getInstance()->get_connection());
+$session = new \Slim\Middleware\Session($manager);
 
-$app = new \Slim\Slim();
+$app->add($session);
 
 //$twigView = new \Slim\Extras\Views\Twig();
 

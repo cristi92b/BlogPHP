@@ -3,6 +3,8 @@
         "slim/slim": "2.*",
         "slim/extras": "dev-master",
         "twig/twig": "1.*",
-        "raulfraile/ladybug": "~1.0"
+        "raulfraile/ladybug": "~1.0",
+        "yusukezzz/slim-session-manager": "0.*",
+        "illuminate/database": "4.2.*"
     }
 }

@@ -25,6 +25,13 @@ CREATE TABLE IF NOT EXISTS comment(
     FOREIGN KEY (post_id) REFERENCES post(id) ON DELETE CASCADE
 )ENGINE=INNODB;
 
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `payload` text COLLATE utf8_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL,
+  UNIQUE KEY `session_id_unique` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 -------
 
 **Inserting into database:**
