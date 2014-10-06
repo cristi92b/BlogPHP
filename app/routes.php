@@ -7,10 +7,7 @@ require_once 'models/Comment.php';
 require_once 'controllers/PostsController.php';
 
 
-
 $app = new \Slim\Slim();
-
-//$twigView = new \Slim\Extras\Views\Twig();
 
 
 // posts index
@@ -40,7 +37,6 @@ $app->get('/posts/:id', function ($id) {
     PostsController::show($id);
 });
 
-
 // posts update
 $app->post('/posts/:id', function() use ($app) {
     PostsController::update($app);
@@ -50,8 +46,6 @@ $app->post('/posts/:id', function() use ($app) {
 $app->post('/posts/:id/delete', function($id){
     PostsController::delete($id);
 });
-
-
 
 $app->run();
 ?>
