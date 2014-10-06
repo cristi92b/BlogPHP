@@ -12,24 +12,6 @@ $app = new \Slim\Slim();
 
 //$twigView = new \Slim\Extras\Views\Twig();
 
-/*
-$app->config(array(
-'debug' => true,
-'templates.path' => './Views/',
-'view' => $twig
-));
-*/
-
-/*
-$app->map('/dynamic/:class/:function', function ($class,$function) use ($app) {
-if(!isset($_SESSION['myid'])) die("pleaselogin");
-require_once('controllers/'.str_replace('.','/',$class).'.php');
-$Class=substr($class,strrpos($class,'.')+1);
-$controller=new $Class($app);
-if(method_exists($controller,$function)) $controller->{$function}();
-})->via('GET', 'POST');
-*/
-
 
 // posts index
 
