@@ -8,12 +8,23 @@ require_once 'controllers/PostsController.php';
 require_once 'controllers/ReadController.php';
 require_once 'controllers/LoginController.php';
 
+use JeremyKendall\Password\PasswordValidator;
+use JeremyKendall\Slim\Auth\Adapter\Db\PdoAdapter;
+use JeremyKendall\Slim\Auth\Bootstrap;
+use JeremyKendall\Slim\Auth\Exception\HttpForbiddenException;
 
-$app = new \Slim\Slim();
 
+$app = new \Slim\Slim(array(
+		'cookies.encrypt' => true,
+		'cookies.secret_key' => 'FZr2ucE7eu5AB31p73QsaSjSIG5jhnssjgABlxlVeNV3nRjLt'
+));
 
+$validator = new PasswordValidator();
+$adapter = new PdoAdapter(Database::getInstance()->get_connection(), 'users', 'username', 'password', $validator);
+$acl = new \Example\Acl();
+$authBootstrap = new Bootstrap($app, $adapter, $acl);
+$authBootstrap->bootstrap();
 
-/*
 $app->add(new \Slim\Middleware\SessionCookie(array(
     'expires' => '20 minutes',
     'path' => '/',
@@ -25,7 +36,8 @@ $app->add(new \Slim\Middleware\SessionCookie(array(
     'cipher' => MCRYPT_RIJNDAEL_256,
     'cipher_mode' => MCRYPT_MODE_CBC
 )));
-*/
+
+//-------------------------------------------------------
 
 // login index
 $app->get('/login', function (){
