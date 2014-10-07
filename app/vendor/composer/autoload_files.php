@@ -6,5 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    $vendorDir . '/wp-cli/php-cli-tools/lib/cli/cli.php',
+    $vendorDir . '/ircmaxell/password-compat/lib/password.php',
     $vendorDir . '/raulfraile/ladybug-themes/Ladybug/Plugin/Extra/Resources/php/helpers.php',
 );
