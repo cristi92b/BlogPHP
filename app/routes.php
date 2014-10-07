@@ -5,14 +5,13 @@ require_once 'models/Database.php';
 require_once 'models/Post.php';
 require_once 'models/Comment.php';
 require_once 'controllers/PostsController.php';
+require_once 'controllers/ReadController.php';
+require_once 'controllers/LoginController.php';
 
 
 $app = new \Slim\Slim();
 
-//for debbuging purposes
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+
 
 /*
 $app->add(new \Slim\Middleware\SessionCookie(array(
@@ -27,6 +26,38 @@ $app->add(new \Slim\Middleware\SessionCookie(array(
     'cipher_mode' => MCRYPT_MODE_CBC
 )));
 */
+
+// login index
+$app->get('/login', function (){
+    LoginController::index();
+});
+
+// login authentication
+$app->post('/login/auth', function () use($app){
+    LoginController::login($app);
+});
+
+// login logout
+$app->post('/login/logout', function (){
+    LoginController::logout();
+});
+
+//-------------------------------------------------------
+
+// read index
+$app->get('/read', function () {
+    ReadController::index();
+});
+
+
+// read show
+$app->get('/read/:id', function ($id) {
+    ReadController::show($id);
+});
+
+
+//-------------------------------------------------------
+
 // posts index
 
 $app->get('/', function () use ($app){

@@ -9,68 +9,32 @@ require_once __DIR__ . '/../models/Comment.php';
 
 class PostsController{
     static function index(){
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            $posts = Post::fetch_all_posts(Database::getInstance());
-            echo self::render('posts_index.html.twig',array('posts' => $posts));
-        }
-        else
-        {
-            //redirect
-        }
+        $posts = Post::fetch_all_posts(Database::getInstance());
+        echo self::render('posts_index.html.twig',array('posts' => $posts));
     }
     
     static function show($id){
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            $post = Post::fetch_post_by_id(Database::getInstance(),$id);
-            echo self::render('posts_show.html.twig',array('post' => $post));
-        }
-        else
-        {
-            //redirect
-        }
+        $post = Post::fetch_post_by_id(Database::getInstance(),$id);
+        echo self::render('posts_show.html.twig',array('post' => $post));
     }
     
     static function _new(){
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            echo self::render('posts_new.html.twig',array());
-        }
-        else
-        {
-            //redirect
-        }
+        echo self::render('posts_new.html.twig',array());
     }
     
     static function create($app){
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            Post::insert_record(Database::getInstance(),$app->request()->post('title'),$app->request()->post('content'));
-            $app->response->redirect("/posts");
-        }
-        else
-        {
-            //redirect
-        }
+        Post::insert_record(Database::getInstance(),$app->request()->post('title'),$app->request()->post('content'));
+        $app->response->redirect("/posts");
     }
     
     static function update($app){
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            $flag = Post::update_record(Database::getInstance(),$app->request()->post('id'),$app->request()->post('title'),$app->request()->post('content'));
-            $app->response->redirect("/posts");
-        }
-        else
-        {
-            //redirect
-        }
+        $flag = Post::update_record(Database::getInstance(),$app->request()->post('id'),$app->request()->post('title'),$app->request()->post('content'));
+        $app->response->redirect("/posts");
     }
     
     static function delete($id){
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            Post::delete_record(Database::getInstance(),$id);
-            $app->response->redirect("/posts");
-        }
-        else
-        {
-            //redirect
-        }
+        Post::delete_record(Database::getInstance(),$id);
+        $app->response->redirect("/posts");
     }
     
     static function render($viewFile, $viewData){
