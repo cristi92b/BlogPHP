@@ -18,7 +18,8 @@ use JeremyKendall\Slim\Auth\Exception\HttpForbiddenException;
 
 $app = new \Slim\Slim(array(
 		'cookies.encrypt' => true,
-		'cookies.secret_key' => 'FZr2ucE7eu5AB31p73QsaSjSIG5jhnssjgABlxlVeNV3nRjLt'
+		'cookies.secret_key' => 'FZr2ucE7eu5AB31p73QsaSjSIG5jhnssjgABlxlVeNV3nRjLt',
+		'app.template' => 'default',
 ));
 
 $validator = new PasswordValidator();
@@ -85,13 +86,17 @@ $app->get('/posts', function () {
 $app->post('/', function () use ($app){
     PostsController::create($app);
 });
+
+
 $app->post('/posts/create', function () use ($app) {
     PostsController::create($app);
+    
 });
 
 // posts new
-$app->get('/posts/new', function () {
-    PostsController::_new();
+$app->get('/posts/new', function () use ($app) {
+		$app->config('app.template', 'admin');
+    PostsController::_new($app);
 });
 
 // posts show
@@ -105,8 +110,8 @@ $app->post('/posts/:id', function() use ($app) {
 });
 
 // posts delete
-$app->post('/posts/:id/delete', function($id){
-    PostsController::delete($id);
+$app->post('/posts/:id/delete', function($id) use ($app){
+    PostsController::delete($id, $app);
 });
 
 $app->run();

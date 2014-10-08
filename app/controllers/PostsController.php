@@ -18,8 +18,8 @@ class PostsController{
         echo self::render('posts_show.html.twig',array('post' => $post));
     }
     
-    static function _new(){
-        echo self::render('posts_new.html.twig',array());
+    static function _new($app){
+        echo self::render('posts_new.html.twig',array(), $app);
     }
     
     static function create($app){
@@ -32,15 +32,20 @@ class PostsController{
         $app->response->redirect("/posts");
     }
     
-    static function delete($id){
+    static function delete($id, $app){
         Post::delete_record(Database::getInstance(),$id);
+        //$app->response->setBody(json_encode(array('status'=>'success')));
         $app->response->redirect("/posts");
     }
     
-    static function render($viewFile, $viewData){
+    static function render($viewFile, $viewData, $app = null){
         $twig = TwigEnvironmentLoader::getInstance()->getEnvironment();
         $renderedView = $twig->render($viewFile, $viewData);
-        $renderedTemplate = $twig->render("./templates/default.html.twig",
+        $template = 'default';
+        if($app != null){
+	        $template = $app->config('app.template');
+	      }
+        $renderedTemplate = $twig->render("./templates/" . $template . ".html.twig",
             array(
                  'mainContent' => $renderedView 
         ));
