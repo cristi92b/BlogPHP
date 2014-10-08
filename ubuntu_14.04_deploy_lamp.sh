@@ -22,7 +22,7 @@ expect eof
 
 echo "$VAR"
 
-sudo apt-get -y install mysql-client apache2 libapache2-mod-php5 php5 php5-cli php5-json php5-mysql php5-readline pkg-php-tools php-pear debpear
+sudo apt-get -y install mysql-client apache2 libapache2-mod-php5 php5 php5-cli php5-json php5-mysql php5-readline pkg-php-tools php-pear debpear git
 
 cd /var/www
 rm *
