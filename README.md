@@ -47,4 +47,8 @@ INSERT INTO comment(name,createdTime,post_id,content) values("name",CURRENT_TIME
 UPDATE post SET  content="...text2..." WHERE id=1;
 UPDATE comment SET  content="...comment..." WHERE id=1;
 
+--------
+
+Passwords for users must be stored as bcrypt hash in the database
+
 
