@@ -12,6 +12,9 @@
     {% endfor %}
 </div>
 <a href="/posts/new">New Post</a>
+<form action="/login/logout" method="post">
+    <button type="Submit">Logout</button>
+</form>
 <script type="text/javascript">
     {% for key,post in posts %}
         $("button#button_{{post.id}}").click(function() {

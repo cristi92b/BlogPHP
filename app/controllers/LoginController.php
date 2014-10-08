@@ -14,12 +14,32 @@ class LoginController{
     
     static function login($app)
     {
-
+        $username = null;
+        if ($app->request()->isPost()) {
+            $username = $app->request->post('user');
+            $password = $app->request->post('password');
+            $result = $app->authenticator->authenticate($username, $password);
+            if ($result->isValid()) {
+                $app->redirect('/posts');
+            } else {
+                $messages = $result->getMessages();
+                $app->redirect('/');
+                //$app->flash('error', $messages[0]);
+            }
+        }
     }
     
-    static function logout()
+    static function logout($app)
     {
-        
+        if ($app->auth->hasIdentity()) {
+            $app->auth->clearIdentity();
+        }
+        $app->redirect('/');
+        /*
+        $hasIdentity = $app->auth->hasIdentity();
+        $identity = $app->auth->getIdentity();
+        $role = ($hasIdentity) ? $identity['role'] : 'guest';
+        */
     }
     
     static function render($viewFile, $viewData){

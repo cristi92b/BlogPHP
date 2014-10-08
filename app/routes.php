@@ -52,8 +52,8 @@ $app->post('/login/auth', function () use($app){
 });
 
 // login logout
-$app->post('/login/logout', function (){
-    LoginController::logout();
+$app->post('/login/logout', function () use($app){
+    LoginController::logout($app);
 });
 
 //-------------------------------------------------------

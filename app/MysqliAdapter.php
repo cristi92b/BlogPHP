@@ -36,8 +36,8 @@ class MysqliAdapter extends AbstractAdapter
      */
     public function authenticate()
     {
+        echo "att";
         $user = $this->findUser();
-
         if ($user === false) {
             return new AuthenticationResult(
                 AuthenticationResult::FAILURE_IDENTITY_NOT_FOUND,
@@ -45,11 +45,14 @@ class MysqliAdapter extends AbstractAdapter
                 array('User not found.')
             );
         }
-
+        
         $validationResult = $this->passwordValidator->isValid(
             $this->credential, $user[$this->credentialColumn], $user['id']
         );
-
+        ladybug_dump($user['id']);
+        ladybug_dump($this->credential);
+        ladybug_dump($user[$this->credentialColumn]);
+        ladybug_dump($validationResult);
         if ($validationResult->isValid()) {
             // Don't store password in identity
             unset($user[$this->getCredentialColumn()]);
@@ -72,11 +75,13 @@ class MysqliAdapter extends AbstractAdapter
     private function findUser()
     {
         $query_str = sprintf(
-            'SELECT * FROM %s WHERE %s = :identity',
+            "SELECT * FROM %s WHERE %s = %s",
             $this->getTableName(),
-            $this->getIdentityColumn()
+            $this->getIdentityColumn(),
+            "\"" . $this->identity . "\""//inherited variable from parent class
         );
-        $result = mysqli_query($this->connection,$query_str);
+        $query = mysqli_query($this->connection,$query_str);
+        $result = mysqli_fetch_assoc($query);
         if(!$result)
         {
             return null;
