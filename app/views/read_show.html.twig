@@ -1,5 +1,5 @@
-<form id="new_post" action="/posts/create" method="post">
-<input type="text" placeholder="Post Title" name="title"><br>
-<textarea name="content"></textarea>
-<button type="submit">Submit</button>
-</form>
+<h2>{{post.title}}</h2>
+<hr>
+{{post.content}}
+<hr>
+<a href="/read">Go back</a>

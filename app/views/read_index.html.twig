@@ -1,25 +1,12 @@
 <div id="posts">
     {% for key,post in posts %}
     <div class="post">
-        <h2><a href="/posts/{{post.id}}">{{post.title}}</a></h2>
+        <h2><a href="/read/{{post.id}}">{{post.title}}</a></h2>
         <h4>Created: {{post.createdTime}}</h4>
         <h4>Last Updated: {{post.updateTime}}</h4>
         <hr>
         {{post.content}}
-        <hr>
-        <button type="button" id="button_{{post.id}}">Delete</button>
     </div>
     {% endfor %}
 </div>
-<a href="/posts/new">New Post</a>
-<script type="text/javascript">
-    {% for key,post in posts %}
-        $("button#button_{{post.id}}").click(function() {
-            $.post( "/posts/{{post.id}}/delete");
-            $(document).ajaxComplete(function() {
-                //location.reload();
-                window.location.href = '/posts';
-            });
-        });
-    {% endfor %}
-</script>
+<a href="/login">Login</a>

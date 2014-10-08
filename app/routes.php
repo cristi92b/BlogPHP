@@ -1,6 +1,8 @@
 <?php
 require_once 'vendor/autoload.php';
 require_once 'TwigEnvironmentLoader.php';
+require_once 'MysqliAdapter.php';
+require_once 'Acl.php';
 require_once 'models/Database.php';
 require_once 'models/Post.php';
 require_once 'models/Comment.php';
@@ -20,8 +22,8 @@ $app = new \Slim\Slim(array(
 ));
 
 $validator = new PasswordValidator();
-$adapter = new PdoAdapter(Database::getInstance()->get_connection(), 'users', 'username', 'password', $validator);
-$acl = new \Example\Acl();
+$adapter = new MysqliAdapter(Database::getInstance(),'users', 'username', 'password', $validator);
+$acl = new Acl();
 $authBootstrap = new Bootstrap($app, $adapter, $acl);
 $authBootstrap->bootstrap();
 
@@ -42,7 +44,7 @@ $app->add(new \Slim\Middleware\SessionCookie(array(
 // login index
 $app->get('/login', function (){
     LoginController::index();
-});
+})->name('login');
 
 // login authentication
 $app->post('/login/auth', function () use($app){
@@ -73,7 +75,7 @@ $app->get('/read/:id', function ($id) {
 // posts index
 
 $app->get('/', function () use ($app){
-    $app->response->redirect("/posts");
+    $app->response->redirect("/read");
 });
 $app->get('/posts', function () {
     PostsController::index();
