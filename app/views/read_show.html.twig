@@ -1,5 +1,28 @@
-<h2>{{post.title}}</h2>
-<hr>
-{{post.content}}
-<hr>
-<a href="/read">Go back</a>
+<div class="content pure-u-1 pure-u-md-3-4">
+	<div class="post">
+	    <header class="post-header">
+		<h2 class="post-title"><a href="/read/{{post.id}}">{{post.title}}</a></h2>
+		<!--
+		<p class="post-meta">
+		    By <a class="post-author" href="#">Andrew Wooldridge</a> under <a class="post-category post-category-yui" href="#">YUI</a>
+		</p>
+		-->
+		<p class="post-meta">
+		    Created: {{post.createdTime}}
+		</p>
+		<p class="post-meta">
+		    Last Updated: {{post.updateTime}}
+		</p>
+		<p class="post-meta">
+		    <a href="/read">Go back to posts</a>
+		</p>
+	    </header>
+
+	    <div class="post-description">
+		<p>
+			{{post.content}}
+		</p>
+	    </div>
+	</div>
+</div>
+
