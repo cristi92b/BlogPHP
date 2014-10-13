@@ -12,7 +12,7 @@ sudo apt-get update
 sudo apt-get install expect
 
 VAR=$(expect -c '
-spawn apt-get -y install mysql-server
+spawn sudo apt-get -y install mysql-server
 expect "New password for the MySQL \"root\" user:"
 send "admin\r"
 expect "Repeat password for the MySQL \"root\" user:"
@@ -28,6 +28,9 @@ cd /var/www
 sudo rm *
 sudo rm -r *
 git clone --recursive https://github.com/cristi92b/BlogPHP.git .
+cd app
+rm -r vendor
+php composer.phar update
 sudo /etc/init.d/mysql start
 mysql -u root -padmin <<EOF
 CREATE DATABASE PHPDB;
@@ -45,5 +48,5 @@ EOF
 echo "Please configure Apcahe2:"
 echo "1. Edit virtual hosts and add /var/www/public_html/ as document root in /etc/apache2/sites-available/"
 echo "2. Allow access override in /etc/apache2/apache2.conf for /var/www"
-
+echo "3. Enable module rewrite"
 
