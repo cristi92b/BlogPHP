@@ -55,7 +55,9 @@ Passwords for users must be stored as bcrypt hash in the database
 Deploying this app in Ubuntu 14.04:
 
 *wget https://raw.githubusercontent.com/cristi92b/BlogPHP/master/ubuntu_14.04_deploy_lamp.sh*
+
 *chmod +x ubuntu_14.04_deploy_lamp.sh*
+
 *./ubuntu_14.04_deploy_lamp.sh*
 
 

@@ -66,7 +66,7 @@ $app->get('/read', function () {
 
 
 // read show
-$app->get('/read/:id', function ($id) {
+$app->get('/read/:id', function ($id){
     ReadController::show($id);
 });
 
@@ -78,8 +78,9 @@ $app->get('/read/:id', function ($id) {
 $app->get('/', function () use ($app){
     $app->response->redirect("/read");
 });
-$app->get('/posts', function () {
-    PostsController::index();
+$app->get('/posts', function () use($app){
+		$app->config('app.template', 'admin');
+    PostsController::index($app);
 });
 
 // posts create
@@ -100,8 +101,9 @@ $app->get('/posts/new', function () use ($app) {
 });
 
 // posts show
-$app->get('/posts/:id', function ($id) {
-    PostsController::show($id);
+$app->get('/posts/:id', function ($id) use($app){
+		$app->config('app.template', 'admin');
+    PostsController::show($app,$id);
 });
 
 // posts update

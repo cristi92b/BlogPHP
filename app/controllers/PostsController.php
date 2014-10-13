@@ -8,14 +8,14 @@ require_once __DIR__ . '/../models/Comment.php';
 
 
 class PostsController{
-    static function index(){
+    static function index($app){
         $posts = Post::fetch_all_posts(Database::getInstance());
-        echo self::render('posts_index.html.twig',array('posts' => $posts));
+        echo self::render('posts_index.html.twig',array('posts' => $posts), $app);
     }
     
-    static function show($id){
+    static function show($app,$id){
         $post = Post::fetch_post_by_id(Database::getInstance(),$id);
-        echo self::render('posts_show.html.twig',array('post' => $post));
+        echo self::render('posts_show.html.twig',array('post' => $post), $app);
     }
     
     static function _new($app){
