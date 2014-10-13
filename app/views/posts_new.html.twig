@@ -1,3 +1,37 @@
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+		<a href="#" class="pure-menu-heading">My Blog</a>
+		<ul>
+				<li><a href="/posts">Edit Posts</a></li>
+				<li class="pure-menu-selected"><a href="#">New Post</a></li>
+				<li><a href="/read">Switch View</a></li>
+				<li><a href="#" id="logout">Logout</a></li>
+		</ul>
+</div>
+<div class="pure-g">
+		<div class="pure-u-1-24 pure-u-md-1-24"></div>
+		<div class="pure-u-23-24 pure-u-md-23-24">
+			<form id="new_post" action="/posts/create" method="post" class="pure-form">
+			<input type="text" placeholder="Post Title" name="title"><br>
+			<textarea name="content"></textarea><br>
+			<button type="submit" class="pure-button pure-button-primary">Submit</button>
+			</form>
+		</div>
+</div>
+
+
+
+<script type="text/javascript">
+		$("a#logout").click(function()
+		{
+			$.post("/login/logout");
+      $(document).ajaxComplete(function() {
+          //location.reload();
+          window.location.href = '/read';
+      });
+		});
+</script>
+
+<!--
 <form id="new_post" action="/posts/create" method="post">
 <input type="text" placeholder="Post Title" name="title"><br>
 <textarea name="content"></textarea>
@@ -7,3 +41,4 @@
 <form action="/login/logout" method="post">
     <button type="Submit">Logout</button>
 </form>
+-->

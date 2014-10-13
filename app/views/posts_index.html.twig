@@ -1,3 +1,70 @@
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+		<a href="#" class="pure-menu-heading">My Blog</a>
+		<ul>
+				<li class="pure-menu-selected"><a href="#">Edit Posts</a></li>
+				<li><a href="/posts/new">New Post</a></li>
+				<li><a href="/read">Switch View</a></li>
+				<li><a href="#" id="logout">Logout</a></li>
+		</ul>
+</div>
+<div class="pure-g">
+		<div class="pure-u-1-24 pure-u-md-1-24"></div>
+		<div class="pure-u-23-24 pure-u-md-23-24">
+				<table class="pure-table pure-table-horizontal">
+					<thead>
+						  <tr>
+						      <th>ID</th>
+						      <th>Title</th>
+						      <th>Created</th>
+						      <th>Updated</th>
+						      <th>Action</th>
+						  </tr>
+					</thead>
+
+					<tbody>
+							{% for key,post in posts %}
+						  <tr>
+						      <td>{{post.id}}</td>
+						      <td>{{post.title}}</td>
+						      <td>{{post.createdTime}}</td>
+						      <td>{{post.updateTime}}</td>
+						      <td>
+						      	<a class="pure-button" href="/posts/{{post.id}}">Edit</a>
+						      	<a class="pure-button" data-id="{{post.id}}" href="#">Delete</a>
+						      <!--<button type="button" id="button_{{post.id}}">Delete</button>-->
+						      </td>
+						  </tr>
+						  {% endfor %}
+					</tbody>
+			</table>
+		</div>
+</div>
+
+<script type="text/javascript">
+		$("a.pure-button").click(function()
+		{
+				var id = $(this).attr('data-id');
+				console.log(id);
+				if(typeof(id) != "undefined" && id !== null)
+				{
+					  $.post( "/posts/" + id + "/delete");
+            $(document).ajaxComplete(function() {
+                //location.reload();
+                window.location.href = '/posts';
+            });
+				}
+		});
+		$("a#logout").click(function()
+		{
+			$.post("/login/logout");
+      $(document).ajaxComplete(function() {
+          //location.reload();
+          window.location.href = '/read';
+      });
+		});
+</script>
+
+<!--
 <div id="posts">
     {% for key,post in posts %}
     <div class="post">
@@ -15,14 +82,5 @@
 <form action="/login/logout" method="post">
     <button type="Submit">Logout</button>
 </form>
-<script type="text/javascript">
-    {% for key,post in posts %}
-        $("button#button_{{post.id}}").click(function() {
-            $.post( "/posts/{{post.id}}/delete");
-            $(document).ajaxComplete(function() {
-                //location.reload();
-                window.location.href = '/posts';
-            });
-        });
-    {% endfor %}
-</script>
+-->
+
