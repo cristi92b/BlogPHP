@@ -2,14 +2,24 @@
 <head>
     <title>My Blog</title>
     <script type="text/javascript" src="/js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="/pure-layout-blog/js/ui.js"></script>
-    <link rel="stylesheet" type="text/css" href="/pure-layout-side-menu/css/layouts/slide-menu.css">
-    <link rel="stylesheet" type="text/css" href="/pure-layout-side-menu/css/layouts/slide-menu-old-ie.css">
-    <!--<link rel="stylesheet" type="text/css" href="css/styles.css">-->
+    <!--<script type="text/javascript" src="/pure-layout-blog/js/ui.js"></script>-->
+    <!--<link rel="stylesheet" type="text/css" href="/css/slide-menu.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="/css/slide-menu-old-ie.css">-->
+    <link rel="stylesheet" type="text/css" href="/css/skin.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/menus.css">
+    <link rel="stylesheet" type="text/css" href="/css/menus-nr.css">
+    <link rel="stylesheet" type="text/css" href="/css/menus-paginator.css">
 </head>
 <body>
-        <h1>Blog admin</h1>
-        <hr>
+				<div class="pure-menu pure-menu-open pure-menu-horizontal">
+						<a href="#" class="pure-menu-heading">My Blog</a>
+						<ul>
+								<li class="pure-menu-selected"><a href="#">Edit Posts</a></li>
+								<li><a href="/read">Switch View</a></li>
+								<li class="pure-menu-disabled"><a href="#">Logout</a></li>
+						</ul>
+				</div>
         {{mainContent | raw}}
 </body>
 </html>

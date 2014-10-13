@@ -7,9 +7,9 @@ require_once __DIR__ . '/../models/Comment.php';
 
 
 class LoginController{
-    static function index()
+    static function index($app)
     {
-        echo self::render('login_index.html.twig',array());
+        echo self::render('login_index.html.twig',array('loggedin' => self::status($app)),array('loggedin' => self::status($app)));
     }
     
     static function login($app)
@@ -42,14 +42,37 @@ class LoginController{
         */
     }
     
-    static function render($viewFile, $viewData){
+    static function render($viewFile, $viewData,$templateData = null,$app = null){
         $twig = TwigEnvironmentLoader::getInstance()->getEnvironment();
         $renderedView = $twig->render($viewFile, $viewData);
-        $renderedTemplate = $twig->render("./templates/default.html.twig",
-            array(
-                 'mainContent' => $renderedView 
-        ));
+        $template = 'default';
+        if($app != null){
+	        $template = $app->config('app.template');
+	      }
+        if($templateData==null)
+        {
+		      $renderedTemplate = $twig->render("./templates/" . $template . ".html.twig",
+		          array('mainContent' => $renderedView));
+        }
+        else
+        {
+        	$renderedTemplate = $twig->render("./templates/" . $template . ".html.twig",
+		          array_merge($templateData,array('mainContent' => $renderedView)));
+        }
         return $renderedTemplate;
+    }
+    
+    static function status($app)
+    {
+			if($app->auth->hasIdentity())
+			{
+				$loggedin = true;
+			}
+			else
+			{
+				$loggedin = false;
+			}
+			return $loggedin;
     }
 }
 ?>

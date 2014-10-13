@@ -43,8 +43,8 @@ $app->add(new \Slim\Middleware\SessionCookie(array(
 //-------------------------------------------------------
 
 // login index
-$app->get('/login', function (){
-    LoginController::index();
+$app->get('/login', function () use($app){
+    LoginController::index($app);
 })->name('login');
 
 // login authentication
@@ -60,14 +60,14 @@ $app->post('/login/logout', function () use($app){
 //-------------------------------------------------------
 
 // read index
-$app->get('/read', function () {
-    ReadController::index();
+$app->get('/read', function () use ($app){
+    ReadController::index($app);
 });
 
 
 // read show
-$app->get('/read/:id', function ($id){
-    ReadController::show($id);
+$app->get('/read/:id', function ($id) use ($app){
+    ReadController::show($app,$id);
 });
 
 
@@ -113,7 +113,7 @@ $app->post('/posts/:id', function() use ($app) {
 
 // posts delete
 $app->post('/posts/:id/delete', function($id) use ($app){
-    PostsController::delete($id, $app);
+    PostsController::delete($app,$id);
 });
 
 $app->run();

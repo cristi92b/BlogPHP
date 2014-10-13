@@ -1,13 +1,16 @@
 <div class="content pure-u-1 pure-u-md-3-4">
 	<div>
+		{% if loggedin %}
+		You are already logged in.
+		{% else %}
 		Please login: <br />
-
 		<form action="/login/auth" method="post">
 		    <input type="text" name="user" placeholder="Username"/> <br />
 		    <input type="password" name="password" placeholder="Password"/> <br />
 		    <button type="submit">Login</button>
 		    <button type="reset">Reset</button>
 		</form>
+		{% endif %}
 	 </div>
 </div>
 

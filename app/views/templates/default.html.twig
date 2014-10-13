@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/css/blog.css">
     <link rel="stylesheet" type="text/css" href="/css/blog-old-ie.css">
     <link rel="stylesheet" type="text/css" href="/css/skin.css">
+    <link rel="stylesheet" type="text/css" href="/css/buttons.css">
 </head>
 <body>
   <div id="layout" class="pure-g">
@@ -16,12 +17,18 @@
 
             <nav class="nav">
                 <ul class="nav-list">
+                		{% if loggedin %}
+                		<li class="nav-item">
+                        <a class="pure-button" href="/posts">Switch View</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="pure-button" href="/login">Logout</a>
+                    </li>
+                    {% else %}    
                     <li class="nav-item">
                         <a class="pure-button" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="pure-button" href="http:/yuilibrary.com">YUILibrary</a>
-                    </li>
+                    </li>  
+                    {% endif %}
                 </ul>
             </nav>
         </div>
