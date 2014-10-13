@@ -3,12 +3,14 @@
 		{% if loggedin %}
 		You are already logged in.
 		{% else %}
-		Please login: <br />
-		<form action="/login/auth" method="post">
-		    <input type="text" name="user" placeholder="Username"/> <br />
-		    <input type="password" name="password" placeholder="Password"/> <br />
-		    <button type="submit">Login</button>
-		    <button type="reset">Reset</button>
+		<h2>Please login:</h2> 
+		<form action="/login/auth" method="post" class="pure-form">
+		    <p><input type="text" name="user" placeholder="Username"/></p>
+		    <p><input type="password" name="password" placeholder="Password"/></p>
+		    <p>
+		    <button type="submit" class="pure-button pure-button-primary">Login</button>
+		    <button type="reset" class="pure-button pure-button-primary">Reset</button>
+		    </p>
 		</form>
 		{% endif %}
 	 </div>
