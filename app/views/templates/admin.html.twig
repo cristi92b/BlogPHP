@@ -6,7 +6,7 @@
     <!--<link rel="stylesheet" type="text/css" href="/css/slide-menu.css">-->
     <!--<link rel="stylesheet" type="text/css" href="/css/slide-menu-old-ie.css">-->
     <link rel="stylesheet" type="text/css" href="/css/skin.css">
-    <!--<link rel="stylesheet" type="text/css" href="/css/styles.css">-->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <link rel="stylesheet" type="text/css" href="/css/menus.css">
     <link rel="stylesheet" type="text/css" href="/css/menus-nr.css">
     <link rel="stylesheet" type="text/css" href="/css/menus-paginator.css">
@@ -15,8 +15,33 @@
     <link rel="stylesheet" type="text/css" href="/css/grids-responsive.css">
     <link rel="stylesheet" type="text/css" href="/css/grids-responsive-old-ie.css">
     <link rel="stylesheet" type="text/css" href="/css/pure.css">
+    
+		<script type="text/javascript" >
+		 $(document).ready(function(){
+			setTimeout(function(){
+					var flash = $(".flash");
+					flash.animate({
+						opacity: 0.5
+					}, 500, 'linear', function(){
+						flash.animate({
+							opacity: 0,
+							height: 0,
+							padding: 0,
+							margin: 0
+						}, 700, 'linear');
+					});
+			 },3000);
+		 });
+		</script>
 </head>
 <body>
+
+	{% if flash is defined %}
+		<div class="flash">
+			{{flash}}
+		</div>
+	{% endif %}
+
 	{{mainContent | raw}}   
 </body>
 </html>

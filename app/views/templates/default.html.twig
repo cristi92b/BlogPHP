@@ -2,13 +2,24 @@
 <head>
     <title>My Blog</title>
     <script type="text/javascript" src="/js/jquery-2.1.1.js"></script>
-    <!--<link rel="stylesheet" type="text/css" href="css/styles.css">-->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="/css/blog.css">
     <link rel="stylesheet" type="text/css" href="/css/blog-old-ie.css">
     <link rel="stylesheet" type="text/css" href="/css/skin.css">
     <link rel="stylesheet" type="text/css" href="/css/buttons.css">
     <link rel="stylesheet" type="text/css" href="/css/forms.css">
     <link rel="stylesheet" type="text/css" href="/css/forms-nr.css">
+		<script type="text/javascript" >
+		 $(document).ready(function(){
+			setTimeout(function(){
+					$(".flash").hide();
+					$(".flash").fadeIn(1500, function()
+					{
+						$(".flash").fadeOut(1500);
+					});
+			 });
+		 });
+		</script>
 </head>
 <body>
   <div id="layout" class="pure-g">

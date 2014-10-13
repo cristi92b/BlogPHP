@@ -28,6 +28,7 @@ class PostsController{
     
     static function update($app){
         $flag = Post::update_record(Database::getInstance(),$app->request()->post('id'),$app->request()->post('title'),$app->request()->post('content'));
+        $app->flash('info', 'Post updated sucessfully!');
         $app->response->redirect("/posts");
     }
     
@@ -41,6 +42,11 @@ class PostsController{
         $twig = TwigEnvironmentLoader::getInstance()->getEnvironment();
         $renderedView = $twig->render($viewFile, $viewData);
         $template = 'default';
+        if ( array_key_exists('slim.flash', $_SESSION) 
+        	&&  array_key_exists('info', $_SESSION['slim.flash']) 
+       ) {
+        	$templateData['flash'] = $_SESSION['slim.flash']['info'];
+        }
         if($app != null){
 	        $template = $app->config('app.template');
 	      }
@@ -68,6 +74,18 @@ class PostsController{
 				$loggedin = false;
 			}
 			return $loggedin;
+    }
+    
+    static function set_flash($string)
+    {
+    	self::$flash = $string;
+    	self::$flash_data = true;
+    }
+    
+    static function get_flash()
+    {
+    	self::$flash_data = false;
+    	return self::$flash;
     }
 }
 ?>
