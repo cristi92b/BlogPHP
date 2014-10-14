@@ -84,7 +84,7 @@ class Comment {
 		  	return null;
 		  }
 		  $name = "\"" . mysqli_real_escape_string($connection,$name) . "\""; //mysqli_real_escape_string($connection,$name)
-		  $content = "\"" . mysqli_real_escape_string($connection,$name) . "\"";
+		  $content = "\"" . mysqli_real_escape_string($connection,$content) . "\"";
 		  $query_str = "INSERT INTO comment(name,createdTime,post_id,content) values($name,CURRENT_TIMESTAMP(),$id,$content)";
 		  $result = mysqli_query($connection,$query_str);
 		  return $result;
