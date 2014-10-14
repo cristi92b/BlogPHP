@@ -12,7 +12,7 @@
 		<div class="pure-u-23-24 pure-u-md-23-24">
 			<form id="new_post" action="/posts/create" method="post" class="pure-form">
 			<input type="text" placeholder="Post Title" name="title"><br>
-			<textarea name="content"></textarea><br>
+			<textarea name="content" id="editor1"></textarea><br>
 			<button type="submit" class="pure-button pure-button-primary">Submit</button>
 			</form>
 		</div>
@@ -29,6 +29,7 @@
           window.location.href = '/read';
       });
 		});
+		CKEDITOR.replace( 'editor1' );
 </script>
 
 <!--
