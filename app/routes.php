@@ -70,6 +70,11 @@ $app->get('/read/:id', function ($id) use ($app){
     ReadController::show($app,$id);
 });
 
+// read create (comment)
+$app->post('/read/create', function () use ($app){
+    ReadController::create($app);
+});
+
 
 //-------------------------------------------------------
 

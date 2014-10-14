@@ -22,19 +22,41 @@ class PostsController{
     }
     
     static function create($app){
-        Post::insert_record(Database::getInstance(),$app->request()->post('title'),$app->request()->post('content'));
+        $flag = Post::insert_record(Database::getInstance(),$app->request()->post('title'),$app->request()->post('content'));
+        if($flag)
+        {
+            $app->flash('info', 'Post created successfully!');
+        }
+        else
+        {
+            $app->flash('info', 'Failed creating post!');
+        }
         $app->response->redirect("/posts");
     }
     
     static function update($app){
         $flag = Post::update_record(Database::getInstance(),$app->request()->post('id'),$app->request()->post('title'),$app->request()->post('content'));
-        $app->flash('info', 'Post updated sucessfully!');
+        if($flag)
+        {
+            $app->flash('info', 'Post updated sucessfully!');
+        }
+        else
+        {
+            $app->flash('info', 'Failed to update post!');
+        }
         $app->response->redirect("/posts");
     }
     
     static function delete($app,$id){
-        Post::delete_record(Database::getInstance(),$id);
-        //$app->response->setBody(json_encode(array('status'=>'success')));
+        $flag = Post::delete_record(Database::getInstance(),$id);
+        if($flag)
+        {
+            $app->flash('info', 'Post deleted sucessfully!');
+        }
+        else
+        {
+            $app->flash('info', 'Failed to delete post!');
+        }
         $app->response->redirect("/posts");
     }
     
@@ -65,15 +87,15 @@ class PostsController{
     
     static function status($app)
     {
-			if($app->auth->hasIdentity())
-			{
-				$loggedin = true;
-			}
-			else
-			{
-				$loggedin = false;
-			}
-			return $loggedin;
+        if($app->auth->hasIdentity())
+        {
+                $loggedin = true;
+        }
+        else
+        {
+                $loggedin = false;
+        }
+        return $loggedin;
     }
     
     static function set_flash($string)

@@ -17,12 +17,63 @@
 		    <a href="/read">Go back to posts</a>
 		</p>
 	    </header>
-
 	    <div class="post-description">
 		<p>
 			{{post.content}}
 		</p>
 	    </div>
 	</div>
+        <hr>
+        {% if comments is not empty %}
+        <div id="comments_table">
+            <table class="pure-table pure-table-horizontal">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Posted</th>
+                    <th>Edited</th>
+                    <th>Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key,comment in comments %}
+                <tr>
+                    <td>{{comment.name}}</td>
+                    <td>{{comment.createdTime}}</td>
+                    <td>{{comment.updateTime}}</td>
+                    <td>{{comment.content}}</td>
+                </tr>
+                {% endfor %}
+            <tbody>
+            </table>
+        </div>
+        {% else %}
+            No comments found. <br>
+        {% endif %}
+        <a id="comment_button" class="pure-button" href="#">Comment</a>
+        <div id="form_place">
+        </div>
 </div>
+
+<script type="text/javascript">
+    $("a#comment_button").click(function()
+    {
+        $("div#form_place").html(
+        '<div id="form_place">' +
+        '<form action="/read/create" method="post" class="pure-form">' +
+        '<input type="text" placeholder="Name" name="name"><br>' +
+	'<textarea name="content"></textarea><br>' +
+        '<input type="hidden" name="id" value="{{post.id}}">' +
+	'<button type="submit" class="pure-button pure-button-primary">Submit</button>' +
+        '</form>' +
+        '</div>');
+        /*
+        $.post("/read/create", { name: "John", content: "2pm" } );
+        $(document).ajaxComplete(function() {
+            location.reload(true);
+            //window.location.href = '/read';
+        });
+        */
+    });
+</script>
 

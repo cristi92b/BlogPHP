@@ -21,6 +21,7 @@ class Acl extends ZendAcl
         $this->addResource('/login/logout');
         $this->addResource('/read');
         $this->addResource('/read/:id');
+        $this->addResource('/read/create');
         $this->addResource('/posts');
         $this->addResource('/posts/create');
         $this->addResource('/posts/new');
@@ -33,6 +34,7 @@ class Acl extends ZendAcl
         $this->allow('guest', '/', 'GET');
         $this->allow('guest', '/read', 'GET');
         $this->allow('guest', '/read/:id', 'GET');
+        $this->allow('guest', '/read/create', 'POST');
         $this->allow('guest', '/login', array('GET', 'POST'));
         $this->allow('guest', '/login/auth', array('GET', 'POST'));
         //$this->allow('guest', '/logout', 'GET');

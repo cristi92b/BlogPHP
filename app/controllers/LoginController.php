@@ -46,6 +46,11 @@ class LoginController{
         $twig = TwigEnvironmentLoader::getInstance()->getEnvironment();
         $renderedView = $twig->render($viewFile, $viewData);
         $template = 'default';
+        if ( array_key_exists('slim.flash', $_SESSION) 
+        	&&  array_key_exists('info', $_SESSION['slim.flash']) 
+       ) {
+        	$templateData['flash'] = $_SESSION['slim.flash']['info'];
+        }
         if($app != null){
 	        $template = $app->config('app.template');
 	      }

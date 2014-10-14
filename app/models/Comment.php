@@ -70,18 +70,18 @@ class Comment {
 		  $connection = $db_instance->get_connection();
 		  $result = mysqli_query($connection,"SELECT * FROM comment WHERE post_id={$post_id} Order by createdTime");
 		  $comments=array();
-		  while($row = mysqli_fetch_array($result))
+		  while($row = mysqli_fetch_assoc($result))
 		  {
-		  	$comments[]=new Comment($row['id'],$row['name'],$row['createdTime'],$row['updateTime'],$row['post_id'],$row['content']);
+		  	$comments[]=$row;//new Comment($row['id'],$row['name'],$row['createdTime'],$row['updateTime'],$row['post_id'],$row['content']);
 		  }
 		  return $comments;
     }
     
-    public static function insert_record($db_instance,$name,$content){
+    public static function insert_record($db_instance,$name,$content,$id){
 		  $connection = $db_instance->get_connection();
-		  $name = "\"" + $name + "\""; //mysqli_real_escape_string($connection,$name)
-		  $content = "\"" + $content + "\"";
-		  $query_str = "INSERT INTO comment(name,createdTime,post_id,content) values($name,CURRENT_TIMESTAMP(),1,$content)";
+		  $name = "\"" . $name . "\""; //mysqli_real_escape_string($connection,$name)
+		  $content = "\"" . $content . "\"";
+		  $query_str = "INSERT INTO comment(name,createdTime,post_id,content) values($name,CURRENT_TIMESTAMP(),$id,$content)";
 		  $result = mysqli_query($connection,$query_str);
 		  return $result;
     }

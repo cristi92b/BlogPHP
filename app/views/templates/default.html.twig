@@ -2,26 +2,37 @@
 <head>
     <title>My Blog</title>
     <script type="text/javascript" src="/js/jquery-2.1.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="/css/blog.css">
     <link rel="stylesheet" type="text/css" href="/css/blog-old-ie.css">
     <link rel="stylesheet" type="text/css" href="/css/skin.css">
     <link rel="stylesheet" type="text/css" href="/css/buttons.css">
     <link rel="stylesheet" type="text/css" href="/css/forms.css">
-    <link rel="stylesheet" type="text/css" href="/css/forms-nr.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <!--<link rel="stylesheet" type="text/css" href="/css/pure.css">-->
 		<script type="text/javascript" >
 		 $(document).ready(function(){
 			setTimeout(function(){
-					$(".flash").hide();
-					$(".flash").fadeIn(1500, function()
-					{
-						$(".flash").fadeOut(1500);
+					var flash = $(".flash");
+					flash.animate({
+						opacity: 0.5
+					}, 500, 'linear', function(){
+						flash.animate({
+							opacity: 0,
+							height: 0,
+							padding: 0,
+							margin: 0
+						}, 700, 'linear');
 					});
-			 });
+			 },3000);
 		 });
 		</script>
 </head>
 <body>
+    {% if flash is defined %}
+	    <div class="flash">
+		    {{flash}}
+	    </div>
+    {% endif %}
   <div id="layout" class="pure-g">
     <div class="sidebar pure-u-1 pure-u-md-1-4">
         <div class="header">

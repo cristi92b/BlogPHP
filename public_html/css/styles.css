@@ -1,7 +1,7 @@
 body{
     background-color: white; 
 }
-
+/*
 div#posts{
     background-color: red;
 }
@@ -14,7 +14,7 @@ div.post{
     right: 0px;
     background-color: white;
 }
-
+*/
 .top-bar {
   position: fixed;
   top: 0;
