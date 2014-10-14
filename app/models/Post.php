@@ -89,7 +89,7 @@ class Post {
     
     public static function insert_record($db_instance,$title,$content){
 		  $connection = $db_instance->get_connection();
-		  $title = '\'' . $title . '\''; //mysqli_real_escape_string($connection,$title)
+		  $title = '\'' . $title . '\'';
 		  $content = '\'' . $content . '\'';
 		  $query_str = "INSERT INTO post(title,createdTime,content) values($title,CURRENT_TIMESTAMP(),$content)";
 		  $result = mysqli_query($connection,$query_str);

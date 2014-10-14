@@ -79,8 +79,12 @@ class Comment {
     
     public static function insert_record($db_instance,$name,$content,$id){
 		  $connection = $db_instance->get_connection();
-		  $name = "\"" . $name . "\""; //mysqli_real_escape_string($connection,$name)
-		  $content = "\"" . $content . "\"";
+		  if(!(strpos($name, '<') == false && strpos($name, '>') == false && strpos($content, '<') == false && strpos($content, '>') == false))
+		  {
+		  	return null;
+		  }
+		  $name = "\"" . mysqli_real_escape_string($connection,$name) . "\""; //mysqli_real_escape_string($connection,$name)
+		  $content = "\"" . mysqli_real_escape_string($connection,$name) . "\"";
 		  $query_str = "INSERT INTO comment(name,createdTime,post_id,content) values($name,CURRENT_TIMESTAMP(),$id,$content)";
 		  $result = mysqli_query($connection,$query_str);
 		  return $result;
