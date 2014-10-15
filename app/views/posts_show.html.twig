@@ -13,7 +13,7 @@
 			<form class="pure-form" method="post">
 					<input type="hidden" name="id" value="{{post.id}}">
 					Title: <br> 
-					<input type="text" name="title" placeholder="{{post.title}}" id="title_text"> <br>
+					<input type="text" name="title" value="{{post.title}}" placeholder="Post Title" id="title_text"> <br>
 					Content: <br>
 					<textarea name="content" placeholder="{{post.content}}" id="content_text"></textarea>
 					<br>
@@ -31,7 +31,10 @@
           window.location.href = '/read';
       });
 		});
-		CKEDITOR.replace( 'content_text' );
+		$(document).ready(function() {
+					CKEDITOR.replace( 'content_text' );
+					CKEDITOR.instances.content_text.setData('{{post.content}}');
+		});
 </script>
 
 <!--
